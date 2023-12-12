@@ -1,0 +1,77 @@
+html,
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 300px;
+    padding: 10px;
+    background-color: #fff;
+}
+
+#result {
+    height: 30px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#pokemonImage {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    margin-top: 10px;
+    transition: transform 0.3s ease;
+}
+
+.options-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+button {
+    width: calc(50% - 30px);
+    text-transform: capitalize;
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4169E1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+#result.correct {
+    color: #4CAF50;
+}
+
+#result.wrong {
+    color: #f44336;
+}
+
+button.correct {
+    background-color: #4CAF50;
+}
+
+button.wrong {
+    background-color: #f44336;
+}
+
+button.correct,
+button.wrong {
+    pointer-events: none;
+}
