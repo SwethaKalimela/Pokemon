@@ -23,7 +23,7 @@ body {
 
 /* Targets all the h4 elements of parent container */
 .container>h4 {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 #result {
