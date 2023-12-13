@@ -25,6 +25,10 @@ body {
     margin-top: 10px;
 }
 
+#imageContainer {
+    height: 250px;
+}
+
 #pokemonImage {
     max-width: 250px;
     max-height: 250px;
