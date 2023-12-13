@@ -1,7 +1,9 @@
 html,
 body {
     display: flex;
+    /* Added (align-items) to align all the elements of body, html to center vertically */
     align-items: center;
+    /* Added (justify-content)all to align the elements of body, html to center horizontally */
     justify-content: center;
     height: 100%;
 }
@@ -17,6 +19,11 @@ body {
     max-width: 300px;
     padding: 10px;
     background-color: #fff;
+}
+
+/* Targets all the h4 elements of parent container */
+.container>h4 {
+    margin-bottom: 10px;
 }
 
 #result {
