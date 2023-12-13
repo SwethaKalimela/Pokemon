@@ -37,9 +37,8 @@ body {
 }
 
 #pokemonImage {
-    max-width: 250px;
-    max-height: 250px;
-    object-fit: cover;
+    max-width: 200px;
+    max-height: 200px;
     margin-top: 10px;
     transition: transform 0.3s ease;
 }
