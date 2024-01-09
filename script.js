@@ -2,9 +2,30 @@ let resultElement = document.getElementById('result');
 let pokemonImageElement = document.getElementById('pokemonImage');
 let optionsContainer = document.getElementById('options');
 const pointsElement = document.getElementById('pointsValue');
+const totalCount = document.getElementById('totalCount');
+const mainContainer = document.getElementsByClassName('container');
+const loadingContainer = document.getElementById('loadingContainer');
 
+let count = 0;
 let points = 0;
+let showLoading = false;
 let usedPokemonIds = []; // Array used to store the list of already used/displayed pokemons
+
+const showPuzzleWindow = () => {
+    loadingContainer.classList.remove('show');
+    mainContainer[0].classList.remove('hide');
+    mainContainer[0].classList.add('show');
+}
+
+const hidePuzzleWindow = () => mainContainer[0].classList.add('hide');
+
+const showLoadingWindow = () => {
+    mainContainer[0].classList.remove('show');
+    loadingContainer.classList.remove('hide');
+    loadingContainer.classList.add('show');
+}
+
+const hideLoadingWindow = () => loadingContainer.classList.add('hide');
 
 // Fetch Single Pokemon
 async function fetchPokemonById(id) {
@@ -14,6 +35,8 @@ async function fetchPokemonById(id) {
 }
 
 async function loadQuestionWithOptions() {
+    showLoadingWindow();
+    hidePuzzleWindow();
     // Fetch correct answer first
     let pokemonId = getRandomPokemonId();
 
@@ -45,7 +68,7 @@ async function loadQuestionWithOptions() {
     shuffleArray(options);
 
     // Clear any previous result and update pokemon image to fetched image URL from the "sprites"
-    resultElement.textContent = '';
+    resultElement.textContent = "Who's this Pokemon?";
     pokemonImageElement.src = pokemon.sprites.other.dream_world.front_default;
 
     // Create options HTML elements from options array in the DOM
@@ -56,6 +79,8 @@ async function loadQuestionWithOptions() {
         button.onclick = (event) => checkAnswer(option === pokemon.name, event);
         optionsContainer.appendChild(button);
     });
+    hideLoadingWindow();
+    showPuzzleWindow();
 }
 
 function checkAnswer(isCorrect, event) {
@@ -69,6 +94,8 @@ function checkAnswer(isCorrect, event) {
 
     // Else, mark the clicked button as selected
     event.target.classList.add('selected');
+    count++;
+    totalCount.textContent = count;
 
     if (isCorrect) {
         displayResult('Correct answer', 'correct');
@@ -81,6 +108,11 @@ function checkAnswer(isCorrect, event) {
         event.target.classList.add('wrong');
     }
 
+    setTimeout(() => {
+        showLoadingWindow();
+        hidePuzzleWindow();
+    }, 1000);
+
     // Load next question with 2 sec delay
     setTimeout(() => {
         loadQuestionWithOptions();
@@ -88,16 +120,15 @@ function checkAnswer(isCorrect, event) {
 }
 
 // Function to update result text and class name
-function displayResult(result, className) {
+function displayResult(result) {
     resultElement.textContent = result;
-    resultElement.className = className;
 }
 
 function getRandomPokemonId() {
     return Math.floor(Math.random() * 151) + 1;
 }
 
-// Initial load
+// Step [1]: Initial load
 loadQuestionWithOptions();
 
 function shuffleArray(array) {

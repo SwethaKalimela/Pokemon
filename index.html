@@ -14,17 +14,18 @@
 
 <body>
   <div class="container">
-    <h4>Who's this Pokemon?</h4>
-    <div id="result"></div>
+    <h4 id="result" class="header">Who's this Pokemon?</h4>
     <div id="imageContainer">
       <img id="pokemonImage" alt="Pokemon Image">
     </div>
 
     <!-- Container to display 4 options  -->
     <div id="options" class="options-container"></div>
-
-    <h4 id="points">Points: <span id="pointsValue">0</span></h4>
   </div>
+  <div id="loadingContainer" class="loading-container">
+    <img id="loadingIcon" src="loading_icon.gif" alt="Loading...">
+  </div>
+  <h4 id="points">Points: <span id="pointsValue">0</span>/<span id="totalCount">0</span></h4>
 </body>
 
 </html>
